@@ -11,6 +11,8 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    static let container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
 
     var window: UIWindow?
 
