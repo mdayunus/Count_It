@@ -52,6 +52,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let img = #imageLiteral(resourceName: "countertitle2")
+        let imgview = UIImageView()
+        imgview.contentMode = .scaleAspectFit
+        imgview.image = img
+        navigationItem.titleView = imgview
         NotificationCenter.default.addObserver(self, selector: #selector(getCounters), name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
     }
     
@@ -94,6 +99,26 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
                 navigationController?.present(dvc, animated: true, completion: nil)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let del = UIContextualAction(style: .destructive, title: "delete") { [weak self] (action, view, completionHandler) in
+            if let myc = self?.frc?.object(at: indexPath), let pc = self?.container{
+                self!.container?.viewContext.delete(myc)
+                pc.viewContext.delete(myc)
+                if pc.viewContext.hasChanges{
+                    do{
+                        try pc.viewContext.save()
+                    }catch{
+                        fatalError()
+                    }
+                }
+            }
+            completionHandler(true)
+        }
+        let swipeActionsConfig = UISwipeActionsConfiguration(actions: [del])
+        return swipeActionsConfig
     }
     
     

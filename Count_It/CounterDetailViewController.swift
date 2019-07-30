@@ -29,7 +29,7 @@ class CounterDetailViewController: UIViewController {
         didSet{
             currentValueLabel.layer.cornerRadius = 25
             currentValueLabel.layer.borderWidth = 0.5
-            currentValueLabel.layer.borderColor = UIColor.blue.cgColor
+            currentValueLabel.layer.borderColor = UIColor.darkGray.cgColor
             currentValueLabel.layer.masksToBounds = true
             if let last = selectedCounter.valueAt.last?.values.first{
                 currentValueLabel.text = "\(last)"
@@ -44,7 +44,7 @@ class CounterDetailViewController: UIViewController {
         didSet{
             decrementValue.layer.cornerRadius = 25
             decrementValue.layer.borderWidth = 0.5
-            decrementValue.layer.borderColor = UIColor.red.cgColor
+            decrementValue.layer.borderColor = UIColor.darkGray.cgColor // UIColor(red: 255/255, green: 59/255, blue: 48/255, alpha: 1).cgColor //UIColor.red.cgColor
             decrementValue.layer.masksToBounds = true
         }
     }
@@ -53,7 +53,7 @@ class CounterDetailViewController: UIViewController {
         didSet{
             incrementValue.layer.cornerRadius = 25
             incrementValue.layer.borderWidth = 0.5
-            incrementValue.layer.borderColor = UIColor.green.cgColor
+            incrementValue.layer.borderColor = UIColor.darkGray.cgColor // UIColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1).cgColor //UIColor.green.cgColor
             incrementValue.layer.masksToBounds = true
         }
     }
@@ -129,7 +129,7 @@ extension CounterDetailViewController: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: collectionView.frame.size.width - 10, height: collectionView.frame.size.height - 10)
+        let size = CGSize(width: collectionView.frame.size.width - 20, height: collectionView.frame.size.height)
         return size
     }
     
